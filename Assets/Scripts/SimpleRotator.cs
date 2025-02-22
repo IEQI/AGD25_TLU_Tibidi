@@ -5,15 +5,15 @@ using UnityEngine.UIElements;
 
 public class SimpleRotator : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public float rotSpeed = 50f;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Rotate(0, 50*Time.deltaTime, 0);
+        gameObject.transform.Rotate(0, rotSpeed*Time.deltaTime, 0);
     }
 }
