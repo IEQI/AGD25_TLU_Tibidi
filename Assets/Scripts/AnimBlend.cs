@@ -37,7 +37,7 @@ public class AnimBlend : MonoBehaviour
 
         }
 
-        Debug.Log(blendValue);
+        //Debug.Log(blendValue);
 
         skinMesh.SetBlendShapeWeight(0, blendValue);
     }
