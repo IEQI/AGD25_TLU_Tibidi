@@ -8,7 +8,7 @@ public class AnimBlend : MonoBehaviour
 
     SkinnedMeshRenderer skinMesh;
     float blendValue = 0f;
-    float speedChange = 150f;
+    public float speedChange = 150f;
     bool increase = true;
     
     void Start()
