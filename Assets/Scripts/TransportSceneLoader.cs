@@ -13,10 +13,7 @@ public class TransportSceneLoader : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if (sceneToLoad == "Scene2" )
-        {
-            //player
-        }
+
     }
 
     void Update()
@@ -28,6 +25,7 @@ public class TransportSceneLoader : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            player.GetComponent<PlayerSpikeManager>().SpikeCheck();
             SceneManager.LoadScene(sceneToLoad);
         }
     }
