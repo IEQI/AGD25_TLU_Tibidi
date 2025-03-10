@@ -7,11 +7,11 @@ public class TransportSceneLoader : MonoBehaviour
 {
 
     public string sceneToLoad;
-    GameObject player;
+    //GameObject player;
     
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
 
 
     }
@@ -25,7 +25,7 @@ public class TransportSceneLoader : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player.GetComponent<PlayerSpikeManager>().SpikeCheck();
+            PlayerSpikeStatus.hasRunOnce = true; //Before new scene, mark that first time setup is not necessary any more
             SceneManager.LoadScene(sceneToLoad);
         }
     }

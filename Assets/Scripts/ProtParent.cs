@@ -16,16 +16,4 @@ public class ProtParent : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Recept" && other.gameObject.GetComponent<ProtParent>().protType == 1) 
-        {
-            
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            //GetComponentInParent<PlayerSpikeManager>().SpikeCheck();
-        }    
-    }
-
-
 }
