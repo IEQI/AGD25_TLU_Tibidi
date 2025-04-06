@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6333130281d0b42b4f332da1ad5476, type: 3}
+  m_Name: SpikeC
+  m_EditorClassIdentifier: 
+  protType: 2
+  protAffinity: 0
+  SpikeA: {fileID: -7511558181221131132, guid: 04be2cf60a039e34e890395d3e0335bf, type: 3}
+  SpikeB: {fileID: -7511558181221131132, guid: e426ed7ff7021764f84d070999a7c499, type: 3}
+  SpikeC: {fileID: -7511558181221131132, guid: 609c8507d29dd1e4ab49812762ee4f73, type: 3}
+  SpikeD: {fileID: -7511558181221131132, guid: bf919a29f717fb34cbedc0e5cce28eab, type: 3}
+  ReceptA: {fileID: -7511558181221131132, guid: 521ea26419769e048bd6997351dea612,
+    type: 3}
+  ReceptB: {fileID: -7511558181221131132, guid: fe9d8dd08f2ed794ba5ccacaa1389491,
+    type: 3}
+  ReceptC: {fileID: -7511558181221131132, guid: 96a5e4742d3902a46a9e208f001d02f2,
+    type: 3}
+  ReceptD: {fileID: -7511558181221131132, guid: 4c90d1df9b1f013409e6488a2cacb535,
+    type: 3}

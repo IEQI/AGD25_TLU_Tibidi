@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 4990977226276744098}
   - component: {fileID: 3142862662886683865}
   - component: {fileID: -5486089287553700227}
-  - component: {fileID: -1513479247393881785}
   - component: {fileID: 3520444618135563162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProteinBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-1513479247393881785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280431987663105262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f4f0d11f196b346ad4da5d126ca07d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptObj: {fileID: 0}
 --- !u!136 &3520444618135563162
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -108,10 +94,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

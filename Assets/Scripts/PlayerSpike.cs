@@ -7,56 +7,61 @@ public class PlayerSpike : ProtParent
     //[HideInInspector] public GameObject slot1 = null;
 
     public int currentSlot;
-    //public GameObject spikePrefab;
     private bool slotFull;
-    private GameObject spikeInstRef;
 
-
-    void Start()
+    protected override void Start()
     {
-        Transform slotTrans = transform;
+        base.Start();
+        
 
-        //On first scene load add default spikes to virus
+        //On first scene load update mesh with default script obj
         if (PlayerSaveStatus.hasRunOnce == false)
         {
-            
-
-
-            slotFull = true;            
+            PlayerSaveStatus.spikeList[currentSlot] = scriptObj;
+            UpdateMesh();
+            slotFull = true;
         }
 
         else if (PlayerSaveStatus.hasRunOnce == true)
         {            
-            //On not first load and when there should be a spike, then instantiate it
-            if (PlayerSaveStatus.slot[currentSlot] != null)
+            //not first load and when list is not empty
+            if (PlayerSaveStatus.spikeList[currentSlot] != null)
             {
-                GameObject spikeInstance = Instantiate(PlayerSaveStatus.slot[currentSlot], slotTrans.position, slotTrans.rotation);
-                spikeInstance.transform.SetParent(transform);
-                spikeInstRef = spikeInstance;
+                scriptObj = PlayerSaveStatus.spikeList[currentSlot];
+                UpdateMesh();
                 slotFull = true;
             }
 
-            //On not first load and when there should not be a spike, do nothing
-            else if (PlayerSaveStatus.slot[currentSlot] == null)
+            //not first load and when list is empty
+            else if (PlayerSaveStatus.spikeList[currentSlot] == null)
             {
                 slotFull = false;
             }
 
-            //Transform slotTrans = transform;
-            //PlayerSpikeStatus.slot[currentSlot]
-            //Debug.Log(PlayerSpikeStatus.slot[currentSlot].name);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.tag == "Recept" && other.gameObject.GetComponent<ProtParent>().protType == 1 && slotFull)
-        //{
-            Destroy(other.gameObject);
-            Destroy(spikeInstRef);
-            PlayerSaveStatus.slot[currentSlot] = null;
+        if (slotFull == true 
+            && other.GetComponent<ProtParent>().scriptObj.protType == scriptObj.protType 
+            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity)
+        {
+            ClearMesh();
+            PlayerSaveStatus.spikeList[currentSlot] = null;
             slotFull = false;
-        //}
+
+            other.GetComponent<ProtParent>().MatchFound();
+        }
+
+        else
+        {
+            //Debug.Log("Triggered but no match");
+
+        }
+
+
+
     }
 
     void Update()

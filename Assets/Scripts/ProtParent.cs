@@ -10,17 +10,14 @@ public class ProtParent : MonoBehaviour
     MeshRenderer oldMesh;
     MeshFilter oldFilter;
 
-    void Start()
+    protected virtual void Start()
     {
         oldMesh = GetComponent<MeshRenderer>();
         oldFilter = GetComponent<MeshFilter>();
-
-        UpdateMesh();
-
     }
 
 
-    public void UpdateMesh() 
+    public void UpdateMesh()
     {
         if (scriptObj != null)
         {
@@ -35,6 +32,17 @@ public class ProtParent : MonoBehaviour
         {
             Debug.Log("No script object assigned to " + gameObject.name);
         }
+    }
+
+    public void ClearMesh()
+    {
+        oldMesh.sharedMaterial = null;
+        oldFilter.sharedMesh = null;
+    }
+
+    public void MatchFound()
+    {
+        Debug.Log("Match found");
     }
 
 
