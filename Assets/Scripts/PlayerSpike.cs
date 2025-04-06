@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpike : MonoBehaviour
+public class PlayerSpike : ProtParent
 {
     //[HideInInspector] public GameObject slot1 = null;
 
     public int currentSlot;
-    public GameObject spikePrefab;
+    //public GameObject spikePrefab;
     private bool slotFull;
     private GameObject spikeInstRef;
 
@@ -20,10 +20,7 @@ public class PlayerSpike : MonoBehaviour
         if (PlayerSaveStatus.hasRunOnce == false)
         {
             
-            GameObject spikeInstance = Instantiate(spikePrefab, slotTrans.position, slotTrans.rotation);
-            spikeInstance.transform.SetParent(transform);
-            spikeInstRef = spikeInstance;
-            PlayerSaveStatus.slot[currentSlot] = spikePrefab;
+
 
             slotFull = true;            
         }
@@ -53,13 +50,13 @@ public class PlayerSpike : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Recept" && other.gameObject.GetComponent<ProtParent>().protType == 1 && slotFull)
-        {
+        //if (other.gameObject.tag == "Recept" && other.gameObject.GetComponent<ProtParent>().protType == 1 && slotFull)
+        //{
             Destroy(other.gameObject);
             Destroy(spikeInstRef);
             PlayerSaveStatus.slot[currentSlot] = null;
             slotFull = false;
-        }
+        //}
     }
 
     void Update()

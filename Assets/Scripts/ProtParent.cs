@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class ProtParent : MonoBehaviour
 {
-    public ScriptObjList scriptObjList;
-    public int protType;
-    MeshRenderer meshRenderer;
+    public ScriptObjList scriptObj;
+    MeshRenderer newMesh;
+    MeshFilter newFilter;
+    MeshRenderer oldMesh;
+    MeshFilter oldFilter;
 
     void Start()
     {
-        meshRenderer = scriptObjList.GetMeshVisual();
+        oldMesh = GetComponent<MeshRenderer>();
+        oldFilter = GetComponent<MeshFilter>();
+
+        UpdateMesh();
 
     }
+
+
+    public void UpdateMesh() 
+    {
+        if (scriptObj != null)
+        {
+            newMesh = scriptObj.GetMeshVisual();
+            newFilter = newMesh.GetComponent<MeshFilter>();
+
+            oldMesh.sharedMaterial = newMesh.sharedMaterial;
+            oldFilter.sharedMesh = newFilter.sharedMesh;
+
+        }
+        else
+        {
+            Debug.Log("No script object assigned to " + gameObject.name);
+        }
+    }
+
 
     void Update()
     {
