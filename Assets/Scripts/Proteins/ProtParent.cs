@@ -42,7 +42,7 @@ public class ProtParent : MonoBehaviour
 
     public void MatchFound()
     {
-        Debug.Log("Match found");
+        //Debug.Log("Match found");
     }
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CellSmallRecept : ProtParent
 {
 
-    bool slotActive = true;
+    public bool slotActive = true;
     public GameObject spikeVisual;
 
     protected override void Start()
@@ -19,14 +19,20 @@ public class CellSmallRecept : ProtParent
     {
         if (slotActive == true
             && other.GetComponent<ProtParent>().scriptObj.protType == scriptObj.protType
-            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity)
+            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity
+            && other.GetComponent<PlayerSpike>().slotFull == true)
         {
             
             spikeVisual.GetComponent<ProtParent>().scriptObj = other.GetComponent<ProtParent>().scriptObj;
             spikeVisual.GetComponent<ProtParent>().UpdateMesh();
-            slotActive = false;
         }
     }
+
+    public void Deactivate()
+    {
+        slotActive = false;
+    }
+
 
         void Update()
     {

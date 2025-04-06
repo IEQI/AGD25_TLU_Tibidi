@@ -7,7 +7,7 @@ public class PlayerSpike : ProtParent
     //[HideInInspector] public GameObject slot1 = null;
 
     public int currentSlot;
-    private bool slotFull;
+    [HideInInspector] public bool slotFull;
 
     protected override void Start()
     {
@@ -43,29 +43,38 @@ public class PlayerSpike : ProtParent
 
     private void OnTriggerEnter(Collider other)
     {
+        
+        //When there is a spike already and collided object is receptor of the same type
         if (slotFull == true 
             && other.GetComponent<ProtParent>().scriptObj.protType == scriptObj.protType 
-            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity)
+            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity
+            && other.GetComponent<CellSmallRecept>().slotActive == true)
         {
             ClearMesh();
             PlayerSaveStatus.spikeList[currentSlot] = null;
             slotFull = false;
 
-            other.GetComponent<ProtParent>().MatchFound();
+            other.GetComponent<CellSmallRecept>().Deactivate(); //deactivate only after status is updated
+        }
+
+        // When there is no spike and collided object is a spike
+        else if (slotFull == false && other.GetComponent<ProtParent>().scriptObj.protAffinity == ProtAffinity.Spike) 
+        {
+            scriptObj = other.GetComponent<ProtParent>().scriptObj;
+            UpdateMesh();
+            PlayerSaveStatus.spikeList[currentSlot] = scriptObj;
+            slotFull = true;
+            Destroy(other.gameObject); //destroy the floating spike after it has been added to the list
+
         }
 
         else
         {
-            //Debug.Log("Triggered but no match");
-
+            Debug.Log("Triggered but no match");
         }
 
 
 
     }
 
-    void Update()
-    {
-        
-    }
 }
