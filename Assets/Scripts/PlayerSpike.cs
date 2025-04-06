@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpikeManager : MonoBehaviour
+public class PlayerSpike : MonoBehaviour
 {
-    [HideInInspector] public GameObject slot1 = null;
+    //[HideInInspector] public GameObject slot1 = null;
 
     public int currentSlot;
     public GameObject spikePrefab;
@@ -14,70 +14,53 @@ public class PlayerSpikeManager : MonoBehaviour
 
     void Start()
     {
-
+        Transform slotTrans = transform;
 
         //On first scene load add default spikes to virus
-        if (PlayerSpikeStatus.hasRunOnce == false)
+        if (PlayerSaveStatus.hasRunOnce == false)
         {
-            Transform slotTrans = transform;
+            
             GameObject spikeInstance = Instantiate(spikePrefab, slotTrans.position, slotTrans.rotation);
             spikeInstance.transform.SetParent(transform);
             spikeInstRef = spikeInstance;
+            PlayerSaveStatus.slot[currentSlot] = spikePrefab;
 
-            PlayerSpikeStatus.slot[currentSlot] = spikePrefab;
-            slotFull = true;
-
-            //Debug.Log(PlayerSpikeStatus.slot[currentSlot].name);
-
-
+            slotFull = true;            
         }
 
-        else if (PlayerSpikeStatus.hasRunOnce == true)
-        {
-
-            
+        else if (PlayerSaveStatus.hasRunOnce == true)
+        {            
             //On not first load and when there should be a spike, then instantiate it
-            if (PlayerSpikeStatus.slot[currentSlot] != null)
+            if (PlayerSaveStatus.slot[currentSlot] != null)
             {
-                Transform slotTrans = transform;
-                GameObject spikeInstance = Instantiate(spikePrefab, slotTrans.position, slotTrans.rotation);
+                GameObject spikeInstance = Instantiate(PlayerSaveStatus.slot[currentSlot], slotTrans.position, slotTrans.rotation);
                 spikeInstance.transform.SetParent(transform);
                 spikeInstRef = spikeInstance;
-                Debug.Log(PlayerSpikeStatus.slot[currentSlot].name);
                 slotFull = true;
-
             }
 
             //On not first load and when there should not be a spike, do nothing
-            else if (PlayerSpikeStatus.slot[currentSlot] == null)
+            else if (PlayerSaveStatus.slot[currentSlot] == null)
             {
-                Debug.Log(slotFull);
-
+                slotFull = false;
             }
 
-            
             //Transform slotTrans = transform;
             //PlayerSpikeStatus.slot[currentSlot]
-
-
+            //Debug.Log(PlayerSpikeStatus.slot[currentSlot].name);
         }
-                
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Recept" && other.gameObject.GetComponent<ProtParent>().protType == 1 && slotFull)
         {
-
             Destroy(other.gameObject);
             Destroy(spikeInstRef);
-            PlayerSpikeStatus.slot[currentSlot] = null;
+            PlayerSaveStatus.slot[currentSlot] = null;
             slotFull = false;
         }
     }
-
-
 
     void Update()
     {

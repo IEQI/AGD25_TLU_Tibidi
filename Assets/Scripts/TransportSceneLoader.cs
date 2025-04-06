@@ -12,8 +12,6 @@ public class TransportSceneLoader : MonoBehaviour
     void Start()
     {
         //player = GameObject.FindGameObjectWithTag("Player");
-
-
     }
 
     void Update()
@@ -24,8 +22,12 @@ public class TransportSceneLoader : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-        {
-            PlayerSpikeStatus.hasRunOnce = true; //Before new scene, mark that first time setup is not necessary any more
+        {            
+            if (PlayerSaveStatus.hasRunOnce == false)
+            {
+                PlayerSaveStatus.hasRunOnce = true; //Before new scene, mark that first time setup is not necessary any more
+            }
+
             SceneManager.LoadScene(sceneToLoad);
         }
     }
