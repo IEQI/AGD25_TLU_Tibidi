@@ -46,6 +46,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f9f456cacba7f414dadcb985012fcd4b,
         type: 2}
+    - target: {fileID: 4053170736341576021, guid: 755748b0b0377f146808b79d0a1ed002,
+        type: 3}
+      propertyPath: spikeToSpawn
+      value: 
+      objectReference: {fileID: 280431987663105262, guid: b92aecc8bba451240a1925a25f204639,
+        type: 3}
     - target: {fileID: 4373539173636183402, guid: 755748b0b0377f146808b79d0a1ed002,
         type: 3}
       propertyPath: scriptObj
@@ -113,6 +119,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell_SmallBase
       objectReference: {fileID: 0}
+    - target: {fileID: 6149044474681507324, guid: 755748b0b0377f146808b79d0a1ed002,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cf85b7c82fe0cff43b85f91e191d43ce, type: 2}
     - target: {fileID: 6224477898743751776, guid: 755748b0b0377f146808b79d0a1ed002,
         type: 3}
       propertyPath: scriptObj

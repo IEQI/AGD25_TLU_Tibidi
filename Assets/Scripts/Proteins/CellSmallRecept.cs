@@ -25,6 +25,8 @@ public class CellSmallRecept : ProtParent
             
             spikeVisual.GetComponent<ProtParent>().scriptObj = other.GetComponent<ProtParent>().scriptObj;
             spikeVisual.GetComponent<ProtParent>().UpdateMesh();
+
+            GetComponentInParent<SmallCellManager>().Spawn(); //Spawns a new spike
         }
     }
 

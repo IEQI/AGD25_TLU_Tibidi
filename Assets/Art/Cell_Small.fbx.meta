@@ -13,8 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Cell_Small_Shell
-    second: {fileID: -876546973899608171, guid: c61fbf65b1a76dc4eb0420d8b00eca89,
-      type: 3}
+    second: {fileID: 2100000, guid: 5d5a0e463e31cbe4cacb9c7e4337e57e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1627630835289205171}
   - component: {fileID: 2030567131905206889}
   m_Layer: 6
-  m_Name: FloatSpikeObj
+  m_Name: FloatSpikeB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -43,8 +43,8 @@ public class PlayerSpike : ProtParent
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        //When there is a spike already and collided object is receptor of the same type
+
+        // Attaching player spike to receptor - When there is a spike already and collided object is receptor of the same type
         if (slotFull == true 
             && other.GetComponent<ProtParent>().scriptObj.protType == scriptObj.protType 
             && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity
@@ -57,7 +57,7 @@ public class PlayerSpike : ProtParent
             other.GetComponent<CellSmallRecept>().Deactivate(); //deactivate only after status is updated
         }
 
-        // When there is no spike and collided object is a spike
+        // Picking up a new spike - When spike slot is empty and collided object is a spike
         else if (slotFull == false && other.GetComponent<ProtParent>().scriptObj.protAffinity == ProtAffinity.Spike) 
         {
             scriptObj = other.GetComponent<ProtParent>().scriptObj;
