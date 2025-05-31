@@ -25,7 +25,7 @@ public class PlayerMoveController : MonoBehaviour
 
         }
 
-        Invoke(nameof(CallQueryArray), 1f); // for debugging
+        //Invoke(nameof(CallQueryArray), 1f); // for debugging
 
     }
 

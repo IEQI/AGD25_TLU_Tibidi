@@ -46,24 +46,8 @@ public class PlayerSpike : ProtParent
     private void OnTriggerEnter(Collider other)
     {
 
-        // Attaching player spike to receptor - When there is a spike already and collided object is receptor of the same type
-        if (slotFull == true 
-            && other.TryGetComponent<CellSmallRecept>(out var cellRecept)
-            && cellRecept.slotActive == true
-            && cellRecept.scriptObj.protType == scriptObj.protType
-            && cellRecept.scriptObj.protAffinity != scriptObj.protAffinity)
-
-        {
-            ClearMesh();
-            PlayerSaveStatus.spikeList[currentSlot] = null;
-            // slotFull is assigned FALSE in CellSmallRecept script
-            // scriptObj reference is cleared in CellSmallRecept script
-            Debug.Log("Player spike attached");
-            PlayerSaveStatus.QueryArray(); // for debugging
-        }
-
         // Picking up a new spike - When spike slot is empty and collided object is a spike
-        else if (slotFull == false 
+        if (slotFull == false 
             && other.GetComponent<ProtParent>().scriptObj.protAffinity == ProtAffinity.Spike) 
         {
             scriptObj = other.GetComponent<ProtParent>().scriptObj;
@@ -72,17 +56,9 @@ public class PlayerSpike : ProtParent
             slotFull = true;
             Destroy(other.gameObject); //destroy the floating spike after it has been added to the list
             
-            Debug.Log("Player spike picked up spike");
+            Debug.Log("Player picked up spike");
             PlayerSaveStatus.QueryArray(); // for debugging
         }
-
-        else
-        {
-            Debug.Log("Triggered but no match or full");
-            PlayerSaveStatus.QueryArray(); // for debugging
-        }
-
-
 
     }
 

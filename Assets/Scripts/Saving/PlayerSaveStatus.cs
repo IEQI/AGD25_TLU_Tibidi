@@ -8,7 +8,7 @@ public static class PlayerSaveStatus
     //public static GameObject[] slot = new GameObject[3];
     public static ScriptObjList[] spikeList = new ScriptObjList[3];
 
-    public static void QueryArray()
+    public static void QueryArray() // for debugging
     {
         for (int i = 0; i < spikeList.Length; i++)
         {
