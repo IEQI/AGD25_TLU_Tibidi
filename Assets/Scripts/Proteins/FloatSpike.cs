@@ -12,7 +12,7 @@ public class FloatSpike : ProtParent
         base.Start();
         UpdateMesh();
         GetComponent<Rigidbody>().AddRelativeForce(0, 0, -100);
-        Debug.Log("Float spike init");
+        //Debug.Log("Float spike emitted");
     }
 
     void Update()

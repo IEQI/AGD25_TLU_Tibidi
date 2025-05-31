@@ -20,6 +20,7 @@ public class PlayerSpike : ProtParent
             PlayerSaveStatus.spikeList[currentSlot] = scriptObj;
             UpdateMesh();
             slotFull = true;
+            //Debug.Log("Player spike status" + slotFull);
         }
 
         else if (PlayerSaveStatus.hasRunOnce == true)
@@ -27,7 +28,7 @@ public class PlayerSpike : ProtParent
             //not first load and when list is not empty
             if (PlayerSaveStatus.spikeList[currentSlot] != null)
             {
-                scriptObj = PlayerSaveStatus.spikeList[currentSlot];
+                scriptObj = PlayerSaveStatus.spikeList[currentSlot]; // load scriptObj from save
                 UpdateMesh();
                 slotFull = true;
             }
@@ -35,6 +36,7 @@ public class PlayerSpike : ProtParent
             //not first load and when list is empty
             else if (PlayerSaveStatus.spikeList[currentSlot] == null)
             {
+                scriptObj = null; // Clear the default reference if it's null in save
                 slotFull = false;
             }
 
@@ -46,31 +48,38 @@ public class PlayerSpike : ProtParent
 
         // Attaching player spike to receptor - When there is a spike already and collided object is receptor of the same type
         if (slotFull == true 
-            && other.GetComponent<ProtParent>().scriptObj.protType == scriptObj.protType 
-            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity
-            && other.GetComponent<CellSmallRecept>().slotActive == true)
+            && other.TryGetComponent<CellSmallRecept>(out var cellRecept)
+            && cellRecept.slotActive == true
+            && cellRecept.scriptObj.protType == scriptObj.protType
+            && cellRecept.scriptObj.protAffinity != scriptObj.protAffinity)
+
         {
             ClearMesh();
             PlayerSaveStatus.spikeList[currentSlot] = null;
-            slotFull = false;
-
-            other.GetComponent<CellSmallRecept>().Deactivate(); //deactivate only after status is updated
+            // slotFull is assigned FALSE in CellSmallRecept script
+            // scriptObj reference is cleared in CellSmallRecept script
+            Debug.Log("Player spike attached");
+            PlayerSaveStatus.QueryArray(); // for debugging
         }
 
         // Picking up a new spike - When spike slot is empty and collided object is a spike
-        else if (slotFull == false && other.GetComponent<ProtParent>().scriptObj.protAffinity == ProtAffinity.Spike) 
+        else if (slotFull == false 
+            && other.GetComponent<ProtParent>().scriptObj.protAffinity == ProtAffinity.Spike) 
         {
             scriptObj = other.GetComponent<ProtParent>().scriptObj;
             UpdateMesh();
             PlayerSaveStatus.spikeList[currentSlot] = scriptObj;
             slotFull = true;
             Destroy(other.gameObject); //destroy the floating spike after it has been added to the list
-
+            
+            Debug.Log("Player spike picked up spike");
+            PlayerSaveStatus.QueryArray(); // for debugging
         }
 
         else
         {
-            Debug.Log("Triggered but no match");
+            Debug.Log("Triggered but no match or full");
+            PlayerSaveStatus.QueryArray(); // for debugging
         }
 
 

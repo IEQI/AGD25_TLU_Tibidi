@@ -17,7 +17,6 @@ public class PlayerMoveController : MonoBehaviour
     private void Start()
     {
         rigidBod = GetComponentInChildren<Rigidbody>();
-
         
         // If player comes from level 2 then spawn next to the teleporter
         if (PlayerSaveStatus.hasRunOnce == true && GameObject.FindGameObjectWithTag("SpawnPoint") != null) 
@@ -26,6 +25,13 @@ public class PlayerMoveController : MonoBehaviour
 
         }
 
+        Invoke(nameof(CallQueryArray), 1f); // for debugging
+
+    }
+
+    private void CallQueryArray()
+    {
+        PlayerSaveStatus.QueryArray();
     }
 
     private void OnEnable()

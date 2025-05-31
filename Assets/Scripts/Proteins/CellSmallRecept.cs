@@ -18,15 +18,19 @@ public class CellSmallRecept : ProtParent
     private void OnTriggerEnter(Collider other)
     {
         if (slotActive == true
-            && other.GetComponent<ProtParent>().scriptObj.protType == scriptObj.protType
-            && other.GetComponent<ProtParent>().scriptObj.protAffinity != scriptObj.protAffinity
-            && other.GetComponent<PlayerSpike>().slotFull == true)
-        {
-            
-            spikeVisual.GetComponent<ProtParent>().scriptObj = other.GetComponent<ProtParent>().scriptObj;
-            spikeVisual.GetComponent<ProtParent>().UpdateMesh();
+            && other.TryGetComponent<PlayerSpike>(out var playerSpike) // check if other spike is attached to player in the edge case where a spike is shot straight to another cell's receptor
+            && playerSpike.slotFull == true
+            && playerSpike.scriptObj.protType == scriptObj.protType
+            && playerSpike.scriptObj.protAffinity != scriptObj.protAffinity
+            )
 
+        {            
+            spikeVisual.GetComponent<ProtParent>().scriptObj = playerSpike.scriptObj;
+            spikeVisual.GetComponent<ProtParent>().UpdateMesh();            
             GetComponentInParent<SmallCellManager>().Spawn(); //Spawns a new spike
+            playerSpike.slotFull = false;
+            playerSpike.scriptObj = null; // scriptObj is cleared after recept has updated it's spike
+            Deactivate();
         }
     }
 
