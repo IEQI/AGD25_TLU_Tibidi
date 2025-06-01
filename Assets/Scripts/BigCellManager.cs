@@ -31,7 +31,6 @@ public class BigCellManager : MonoBehaviour
         skinMesh = GetComponent<SkinnedMeshRenderer>();
         skinMesh.SetBlendShapeWeight(0, 100);
 
-        //GetComponentInParent<SmallCellManager>().Spawn();
     }
 
     void Update()
