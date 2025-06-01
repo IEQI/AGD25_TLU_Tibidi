@@ -1,15 +1,14 @@
 fileFormatVersion: 2
 guid: 4b099379d482cbc4ab15649e31647811
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_VirusBody
-    second: {fileID: -876546973899608171, guid: d95d88b374d54ae42ae33f17fce28d3a,
-      type: 3}
+    second: {fileID: 2100000, guid: 75f5e0406a7dbf046b246b85506c4684, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -46,7 +45,6 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -107,7 +105,6 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

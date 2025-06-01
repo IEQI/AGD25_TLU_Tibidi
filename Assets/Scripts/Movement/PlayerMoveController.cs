@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI; // or TMPro if using TextMeshPro
+using TMPro;
 
 public class PlayerMoveController : MonoBehaviour
 {
@@ -14,27 +16,21 @@ public class PlayerMoveController : MonoBehaviour
     float rotateDirection;
     Rigidbody rigidBod;
 
+    private GameUiManager uiManager; // Reference to UI manager
+
     private void Start()
     {
         rigidBod = GetComponent<Rigidbody>();
-        
-        // If player comes from level 2 then spawn next to the teleporter
+
         if (PlayerSaveStatus.hasRunOnce == true && GameObject.FindGameObjectWithTag("SpawnPoint") != null) 
         {
             gameObject.transform.position = GameObject.FindGameObjectWithTag("SpawnPoint").transform.position;
-
         }
+
+        uiManager = FindObjectOfType<GameUiManager>(); // Auto-find manager in scene
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
-
-        //Invoke(nameof(CallQueryArray), 1f); // for debugging
-
-    }
-
-    private void CallQueryArray()
-    {
-        PlayerSaveStatus.QueryArray();
     }
 
     private void OnEnable()
@@ -49,18 +45,24 @@ public class PlayerMoveController : MonoBehaviour
         playerRotate.Disable();
     }
 
-
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         moveDirection = playerTranslate.ReadValue<Vector2>() * moveSpeed * Time.deltaTime;
         rotateDirection = playerRotate.ReadValue<float>() * rotSpeed;
 
-        rigidBod.AddForce (moveDirection.x, 0, moveDirection.y);
-        rigidBod.AddTorque (0, rotateDirection, 0);
+        rigidBod.AddForce(moveDirection.x, 0, moveDirection.y);
+        rigidBod.AddTorque(0, rotateDirection, 0);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Interactable")) 
+        {
+            if (uiManager != null)
+            {
+                string objectName = other.gameObject.name;
+                uiManager.UpdateDialTexts(objectName);
+            }
+        }
     }
 }
