@@ -8,20 +8,23 @@ public class AnimBlend : MonoBehaviour
 
     SkinnedMeshRenderer skinMesh;
     float blendValue = 0f;
-    public float speedChange = 150f;
+    float endBlend = 0f;
+    public float blendVar = 0.2f;
+    public float blendSpeed = 0.7f;
     bool increase = true;
     
     void Start()
     {
         skinMesh = GetComponent<SkinnedMeshRenderer>();
+        blendSpeed = UnityEngine.Random.Range(blendSpeed, blendSpeed + blendVar); // add random so not all animations are the same
     }
 
     void Update()
     {
         if (increase)
         {
-        blendValue = blendValue + Time.deltaTime * speedChange;
-            if (blendValue >= 100f)
+        blendValue = blendValue + Time.deltaTime * blendSpeed;
+            if (blendValue >= 1f)
             {
                 increase = false;
             }
@@ -29,7 +32,7 @@ public class AnimBlend : MonoBehaviour
 
         else
         {
-            blendValue = blendValue - Time.deltaTime * speedChange;            
+            blendValue = blendValue - Time.deltaTime * blendSpeed;            
             if (blendValue <= 0f)
             {
                 increase = true;
@@ -37,8 +40,8 @@ public class AnimBlend : MonoBehaviour
 
         }
 
-        //Debug.Log(blendValue);
+        endBlend = Mathf.SmoothStep(0f, 100f, blendValue);
 
-        skinMesh.SetBlendShapeWeight(0, blendValue);
+        skinMesh.SetBlendShapeWeight(0, endBlend);
     }
 }
