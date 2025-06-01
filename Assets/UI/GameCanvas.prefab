@@ -35,6 +35,7 @@ RectTransform:
   - {fileID: 2524143066472442556}
   - {fileID: 1154389631921142886}
   - {fileID: 7402327709215737529}
+  - {fileID: 7033661120236630443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -226,6 +227,71 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1651719012519100614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7033661120236630443}
+  - component: {fileID: 9070151296577855076}
+  m_Layer: 0
+  m_Name: DialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7033661120236630443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651719012519100614}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3398367878841673532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9070151296577855076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651719012519100614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290b8aa50b35441bba68b57cf2a42555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_scientist: {fileID: 4224088456970235024}
+  UI_student: {fileID: 6346220624124524243}
+  scientistText: {fileID: 3140387310443729323}
+  studentText: {fileID: 3039667055059003610}
+  advanceText:
+    m_Name: Advance Text
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 387e5966-4a8a-4639-aa22-f521018238c1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b627f314-9076-42ed-a926-efa33703fc74
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Advance Text
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &2492381373722354443
 GameObject:
   m_ObjectHideFlags: 0

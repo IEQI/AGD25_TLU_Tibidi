@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -8,11 +9,21 @@ public class DialogueManager : MonoBehaviour
     public GameObject UI_student;
 
     [Header("Text Components")]
-    public Text scientistText;
-    public Text studentText;
+    public TMPro.TextMeshProUGUI scientistText;
+    public TMPro.TextMeshProUGUI studentText;
 
     private DialogueLine[] lines;
     private int currentLine = 0;
+
+    public InputAction advanceText;
+
+
+    private void Start()
+    {
+        // ensure both panels are hidden at start
+        UI_scientist.SetActive(false);
+        UI_student.SetActive(false);
+    }
 
     /// <summary>
     /// Called by the trigger zone, passes in the full dialogue.
@@ -53,15 +64,42 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    // on Space, advance if any dialogue panel is active
+
+    //    advanceText = new InputAction(binding: "<Keyboard>/space");
+
+
+    //    if ((UI_scientist.activeSelf || UI_student.activeSelf) && Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        ShowNextLine();
+    //    }
+    //}
+
+    private void OnEnable()
     {
-        // on Space, advance if any dialogue panel is active
-        if ((UI_scientist.activeSelf || UI_student.activeSelf) && Input.GetKeyDown(KeyCode.Space))
+        advanceText.Enable();
+        advanceText.performed += OnAdvanceText;
+    }
+
+    private void OnDisable()
+    {
+        advanceText.Disable();
+        advanceText.performed -= OnAdvanceText;
+    }
+
+    private void OnAdvanceText(InputAction.CallbackContext context)
+    {
+        if (UI_scientist.activeSelf || UI_student.activeSelf)
         {
             ShowNextLine();
         }
     }
 }
+
+
+
 
 [System.Serializable]
 public class DialogueLine
