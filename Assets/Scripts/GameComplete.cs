@@ -21,7 +21,7 @@ public class GameComplete : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             completeText.SetActive(true);
             Invoke(nameof(LoadMenu), 3f);

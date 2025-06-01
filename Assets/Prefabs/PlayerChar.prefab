@@ -132,7 +132,7 @@ MonoBehaviour:
       m_Action: Player Rotate
       m_Flags: 8
     m_Flags: 0
-  moveSpeed: 1
+  moveSpeed: 50
   rotSpeed: 1
 --- !u!54 &8076814413749419000
 Rigidbody:

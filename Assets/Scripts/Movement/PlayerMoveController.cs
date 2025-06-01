@@ -8,7 +8,7 @@ public class PlayerMoveController : MonoBehaviour
     public InputAction playerTranslate;
     public InputAction playerRotate;
 
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 50.0f;
     public float rotSpeed = 1.0f;
     Vector2 moveDirection = Vector2.zero;
     float rotateDirection;
@@ -16,7 +16,7 @@ public class PlayerMoveController : MonoBehaviour
 
     private void Start()
     {
-        rigidBod = GetComponentInChildren<Rigidbody>();
+        rigidBod = GetComponent<Rigidbody>();
         
         // If player comes from level 2 then spawn next to the teleporter
         if (PlayerSaveStatus.hasRunOnce == true && GameObject.FindGameObjectWithTag("SpawnPoint") != null) 
@@ -24,6 +24,9 @@ public class PlayerMoveController : MonoBehaviour
             gameObject.transform.position = GameObject.FindGameObjectWithTag("SpawnPoint").transform.position;
 
         }
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
 
         //Invoke(nameof(CallQueryArray), 1f); // for debugging
 
@@ -49,12 +52,14 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
-        moveDirection = playerTranslate.ReadValue<Vector2>() * moveSpeed;
-        rotateDirection = playerRotate.ReadValue<float>() * rotSpeed;
+
     }
 
     private void FixedUpdate()
     {
+        moveDirection = playerTranslate.ReadValue<Vector2>() * moveSpeed * Time.deltaTime;
+        rotateDirection = playerRotate.ReadValue<float>() * rotSpeed;
+
         rigidBod.AddForce (moveDirection.x, 0, moveDirection.y);
         rigidBod.AddTorque (0, rotateDirection, 0);
     }
