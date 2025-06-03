@@ -45,9 +45,4 @@ public class CellSmallRecept : ProtParent
         slotActive = false;
     }
 
-
-        void Update()
-    {
-        
-    }
 }

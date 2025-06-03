@@ -47,9 +47,4 @@ public class CellBigRecept : ProtParent
         slotActive = false;
     }
 
-
-    void Update()
-    {
-
-    }
 }

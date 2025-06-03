@@ -12,8 +12,4 @@ public class SetShapeKey : MonoBehaviour
         skinMesh.SetBlendShapeWeight(0, 100);
     }
 
-    void Update()
-    {
-        
-    }
 }

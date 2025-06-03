@@ -40,15 +40,4 @@ public class ProtParent : MonoBehaviour
         oldFilter.sharedMesh = null;
     }
 
-    public void MatchFound()
-    {
-        //Debug.Log("Match found");
-    }
-
-
-    void Update()
-    {
-
-    }
-
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerSpike : ProtParent
 {
-    //[HideInInspector] public GameObject slot1 = null;
-
     public int currentSlot;
     [HideInInspector] public bool slotFull;
 
