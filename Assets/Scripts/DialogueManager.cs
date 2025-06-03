@@ -80,8 +80,8 @@ using UnityEngine.InputSystem;
 public class DialogueManager : MonoBehaviour
 {
     [Header("UI Panels")]
-    public GameObject UI_scientist;
-    public GameObject UI_student;
+    // public GameObject UI_scientist;
+    // public GameObject UI_student;
 
     [Header("Text Components")]
     public TMPro.TextMeshProUGUI scientistText;
