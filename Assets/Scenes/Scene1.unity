@@ -272,17 +272,17 @@ PrefabInstance:
     - target: {fileID: 1770120980842800317, guid: d02f227efac79ea4eabb00dcc43b4ec7,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5142794379406518168, guid: d02f227efac79ea4eabb00dcc43b4ec7,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6518213464493175479, guid: d02f227efac79ea4eabb00dcc43b4ec7,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6987274525704897846, guid: d02f227efac79ea4eabb00dcc43b4ec7,
         type: 3}
